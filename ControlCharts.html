@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="robots" content="noindex,nofollow">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="mobile-web-app-capable" content="yes">
+		<title>Контрольные карты Шухарта</title>
+		<link rel="stylesheet" href="./source/control_chart.css">
+		<script type="text/javascript" src="./source/control_chart.js"></script>
+		<script type="text/javascript" src="./source/d3.v4.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container" id="container">
+			<div class="collapse">
+				<span id="collapse_panel" title="Скрыть/показать панель"><img src="./source/close_list.svg" height="10" width="10"><img src="./source/open_list.svg" style="display:none;" height="10" width="10"> панель</span>
+				<span id="collapse_table" title="Скрыть/показать таблицу"><img src="./source/close_list.svg" height="10" width="10"><img src="./source/open_list.svg" style="display:none;" height="10" width="10"> таблица</span>
+			</div>
+			<div class="block">
+				<div class="panel">Проект: <input type="text" list="projects_names" id="project_name"><datalist id="projects_names"></datalist> <button class="btn" id="cc_load_table">Загрузить</button> <button class="btn" id="cc_save_table">Сохранить</button> <button class="btn red" id="cc_delete_table">Удалить</button> | <button class="btn" id="cc_how_to_work">Стандарт работы</button> <span id="msg"></span></div>
+				<div class="panel">Объем выборки: <input type="number" min="1" value="1" id="cc_sample_count" class="how_to_work" data-num="1"> Объем подгруппы: <input type="number" min="1" max="10" value="1" id="cc_group_count" class="how_to_work" data-num="2"> Кол-во экспериментов: <input type="number" min="1" value="20" id="cc_experiment_count" class="how_to_work" data-num="3"> <button class="btn how_to_work" id="cc_new_table" data-num="7">Создать таблицу</button> <button class="btn btn_inactive how_to_work" id="cc_import_data" disabled="disabled" data-num="8">Импорт данных</button></div>
+				<div class="panel" id="import_panel" style="display:none;"><textarea></textarea> <br><button class="btn" id="cc_import_table">Загрузить</button> <input type="checkbox" id="clear_import_data"> <label for="clear_import_data">Очистить после загрузки</label></div>
+				<div class="panel"><label for="limit_points">Рассчитать контрольные пределы по первым</label> <input type="number" min="1" max="20" value="20" id="limit_points" class="how_to_work" data-num="4"> <label for="limit_points">экспериментам</label> | <input id="random_data" type="checkbox" checked="checked"> <label for="random_data">Сгенерировать случайные числа</label> <input type="checkbox" id="hide_limit"> <label for="hide_limit">Скрыть контрольные пределы</label></div>
+				<div class="panel how_to_work" data-num="5">Карты: <input type="checkbox" id="x_map" checked="checked"> <label for="x_map">x-карта</label> <input type="checkbox" id="mr_map"> <label for="mr_map">mR-карта</label> <input type="checkbox" id="mx_map"> <label for="mx_map"><span style="text-decoration:overline;">x</span>-карта</label> <input type="checkbox" id="r_map"> <label for="r_map">R-карта</label> <input type="checkbox" id="pn_map"> <label for="pn_map">pn-карта</label> <input type="checkbox" id="p_map"> <label for="p_map">p-карта</label> <input type="checkbox" id="c_map"> <label for="c_map">c-карта</label> <input type="checkbox" id="u_map"> <label for="u_map">u-карта</label> <button class="btn btn_inactive" id="show_maps" disabled="disabled">Показать</button> <button class="btn btn_inactive" id="cc_print" disabled="disabled">Печать</button> </div>
+				<div class="panel how_to_work" data-num="6">Специальные причины вариаций: <input type="checkbox" id="rule1" checked="checked"> <label for="rule1"><span title="Точка лежит выше (ниже) естественных границ процесса">Правило 1</span></label> | <input type="checkbox" id="rule2"> <label for="rule2"><span title="Из трех последовательных точек две лежат выше (ниже) ЦЛ более чем на два стандартных отклонения">Правило 2</span></label> | <input type="checkbox" id="rule3"> <label for="rule3"><span title="Из пяти последовательных точек четыре лежат выше (ниже) ЦЛ более чем на одно стандартное отклонение">Правило 3</span></label> | <input type="checkbox" id="rule4"> <label for="rule4"><span title="Семь последовательных точек лежат выше (ниже) ЦЛ">Правило 4</span></label> | <input type="checkbox" id="rule5"> <label for="rule5"><span title="Шесть последовательных точек расположены в порядке монотонного возрастания (убывания)">Правило 5</span></label> | <input type="checkbox" id="rule6"> <label for="rule6"><span title="Среди десяти последовательных точек существует подгруппа из восьми точек (считая слева направо), которая образует монотонно возрастающую (убывающую) последовательность">Правило 6</span></label> | <input type="checkbox" id="rule7"> <label for="rule7"><span title="Из двух последовательных точек вторая лежит, по крайней мере, на четыре стандартных отклонения выше (ниже) первой">Правило 7</span></label> </div>
+				<div class="panel">Требование потребителя: <input type="number" id="requirement1" min="1" value="10"> - <input type="number" id="requirement2" min="1" value="20"> <button class="btn btn_inactive" disabled="disabled" id="set_requirement">Установить</button> <button class="btn btn_inactive" disabled="disabled" id="set_max_min" title="Установить требованиями потребителя минимальное и максимальное значение данных">Min-max</button> </div>
+			</div>
+			<div id="cc_data_table" style="display:none;"></div>
+			<div style="display:none;" class="graph">x-карта:<br><svg id="x_map_graph"></svg></div>
+			<div style="display:none;" class="graph">mR-карта:<br><svg id="mr_map_graph"></svg></div>
+			<div style="display:none;" class="graph"><span style="text-decoration:overline;">x</span>-карта:<br><svg id="mx_map_graph"></svg></div>
+			<div style="display:none;" class="graph">R-карта:<br><svg id="r_map_graph"></svg></div>
+			<div style="display:none;" class="graph">pn-карта:<br><svg id="pn_map_graph"></svg></div>
+			<div style="display:none;" class="graph">p-карта:<br><svg id="p_map_graph"></svg></div>
+			<div style="display:none;" class="graph">c-карта:<br><svg id="c_map_graph"></svg></div>
+			<div style="display:none;" class="graph">u-карта:<br><svg id="u_map_graph"></svg></div>
+			<div class="notes">Заметки:<textarea></textarea></div>
+			<div class="board" style="display:none;"></div>
+			<div class="back-top" style="display:none;" title="Вверх">⇑</div>
+			<div id="how_to_work_form" style="display:none;">
+				<div class="how_to_work_body">
+					<h2>Стандарт работы с контрольными картами</h2>
+					<ol>
+						<li>Определить объем выборки (количество выбранных элементов для эксперимента, на пример:
+						<ul>
+							<li>количество производимой продукции за выбранный интервал времени;</li>
+							<li>Время цикла операций за выбранный интервал времени;</li>
+							<li>Любой другой параметр процесса подлежащий статистическому анализу.</li>
+						</ul>
+						</li><li>При использовании двойной карты х – Х, определить величину подгруппы от 2 до 10</li>
+						<li>Выбрать количество планируемых экспериментов (количество выборок)</li>
+						<li>Определить количество последовательных экспериментов, начиная с первого, по которым программы будет рассчитывать естественные границы процесса</li>
+						<li>Выбрать вид контрольной карты или карт, которую собираешься использовать для анализа процесса</li>
+						<li>Выбери какое/какие правила специальных причин вариаций будешь использовать</li>
+						<li>Создай таблицу нажатием на кнопку «Создать таблицу»</li>
+						<li>Импортируй свои данные любым удобным тебе способом</li>
+					</ol>
+					<a id="close_btn" title="Закрыть" href="#close"></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

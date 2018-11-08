@@ -1,0 +1,407 @@
+body
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+	#height: 100%;
+	color: black;
+	line-height: 1.43;
+	font-size: 14px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	background: #005b88;
+	z-index: 0;
+}
+
+input, textarea, button
+{
+	color: black;
+	line-height: 1.3;
+	font-size: 14px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+textarea
+{
+	padding: 4px;
+	background-color: white;
+    border: 1px solid black;
+    outline: none;
+    line-height: 1;
+}
+
+input[type="text"], input[type="number"]
+{
+	font-size: 16px;
+	padding: 4px;
+	background-color: white;
+    border: 1px solid black;
+    outline: none;
+    line-height: normal;
+}
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus
+{
+	box-shadow: 0 0 10px #308900;
+}
+input[type="checkbox"]
+{
+    margin: 0;
+}
+.btn
+{
+	padding: 2px 5px;
+	color: white !important;
+	background-color: #8fcf42;
+	border: none;
+    outline: none;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: none;
+    transition: box-shadow 0.2s linear;
+}
+.btn:hover
+{
+	background-color: #308900;
+	transition: background-color 0.2s linear;
+	box-shadow: 0 0 5px #308900;
+}
+.btn_inactive
+{
+	background-image: linear-gradient(top, #ddd, #aaa);
+	background-image: -webkit-linear-gradient(top,#ddd,#aaa);
+	background-image: -moz-linear-gradient(top,#ddd,#aaa);
+	background-image: -o-linear-gradient(top,#ddd,#aaa);
+	background-color: #ddd;
+	color: #999 !important;
+	cursor: default;
+}
+.red
+{
+	background-color: #FF0000 !important;
+	background-image: none !important;
+}
+.container
+{
+	transition: margin-left .2s;
+}
+
+#container
+{
+	position: relative;
+	width: auto;
+	margin: 5px;
+	padding: 5px;
+	min-width: 1010px;
+	min-height: 55px;
+	background-color: white;
+}
+
+.shift
+{
+	display: inline-block;
+	width: 10px;
+}
+
+.panel
+{
+	padding: 5px;
+}
+
+input[type="number"]
+{
+	height: 13px;
+	width: 50px;
+}
+
+input[type="text"]
+{
+	height: 13px;
+}
+
+.thead, .tbody, .tfoot
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.line
+{
+	height: 24px;
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #7F7F7F;
+	border-right: 1px solid #7F7F7F;
+}
+.curLine, .line:hover
+{
+	background: #BFBFBF !important;
+}
+
+.line.head, .line.head:hover
+{
+	background: #4273A3 !important;
+	font-weight: bold;
+	color: #FFFFFF;
+	vertical-align: top;
+	height: 24px;
+	border-top: 1px solid #7F7F7F;
+}
+
+.line div
+{	
+	vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #7F7F7F;
+	width: 50px;
+	text-align: center;
+}
+
+.line div:first-child
+{
+	border-left: 1px solid #7F7F7F;
+}
+
+input[type="number"].edit
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: 21px;
+	width: 50px;
+	text-align: center;
+}
+
+input[type="number"].edit::-webkit-outer-spin-button,
+input[type="number"].edit::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.data, .count, .req1, .req2
+{
+    cursor: pointer;
+}
+.graph
+{
+	width: 100%;
+	font-weight: bold;
+	border-bottom: solid 1px rgb(127, 127, 127);
+	margin-bottom: 5px;
+}
+
+.axis .grid-line 
+{
+    stroke: #000;
+    stroke-opacity: 0.2;
+}
+
+.graph .point:hover
+{
+    fill: #800080;
+	stroke-width: 4;
+	--transform: scale(2);
+	transform-origin: 50% 50%;
+	-webkit-transform-origin: 50% 50%;
+    cursor: pointer;
+}
+
+.graph .gLine
+{
+	stroke-width: 2;
+}
+
+.graph .gLine:hover
+{
+	stroke-width: 4;
+}
+
+.legend
+{
+	font-size: 0.7em;
+}
+.legend g
+{
+    cursor: pointer;
+}
+.rule
+{
+    cursor: help;
+}
+#msg
+{
+	color: red;
+	display: none;
+	
+}
+.block
+{
+	position: static;
+	padding: 0;
+	margin: 0;
+	position: sticky;
+	top: 0;
+	background-color: #fff;
+	border-bottom: solid 1px rgb(127, 127, 127);
+	margin-bottom: 5px;
+}
+.collapse
+{
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	font-size: 0.7em;
+	top: 10px;
+	position: fixed;
+	right: 10px;
+	z-index: 90;
+}
+.collapse span
+{
+	text-align: center;
+	background: #BFBFBF;
+	padding: 5px;
+	display: inline-block;
+	padding-left: 5px;
+	display: inline-block;
+	width: 60px;
+}
+.collapse span:hover
+{
+	background:#7F7F7F;
+}
+.back-top
+{
+	position: fixed;
+	bottom: 15px;
+	right: 10px;
+	background: #7F7F7F;
+	padding: 5px;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	font-size: 16px;
+	opacity: 0.9;
+	border-radius: 25px;
+}
+.back-top:hover
+{
+	background: #A2A2A2;
+	cursor: pointer;
+}
+.notes textarea {
+	width: calc(100% - 10px);
+	max-width: calc(100% - 10px);
+	min-height: 20px;
+	min-width: 500px;
+	margin: 0;
+}
+#import_panel textarea{
+	min-height: 300px;
+	width: 500px;
+	max-width: calc(100% - 15px);
+	min-width: 500px;
+	margin: 0;
+}
+.board
+{
+	z-index: 99;
+	position: absolute;
+	display: none;
+	top:0px;
+	left:0px;
+	background-color: #4D4D4D;
+	padding: 5px 10px 5px 10px;
+	color: white;
+	opacity: 0.9;
+	border-radius: 5px;
+}
+#how_to_work_form {
+    right: 0;
+    left: 0;
+    position: fixed; 
+    top: 0;
+    bottom: 0;
+	background-color: rgba(1, 0, 0, 0.50);
+    z-index: 999;
+}
+#how_to_work_form .how_to_work_body {
+	margin-left: auto;
+	margin-right: auto;
+    top: 17%;
+    right: 0;
+    left: 0;
+    position: fixed;
+    padding: 15px;
+    border: 1px solid #383738;
+    background: #fefeff;
+    border-radius: 15px;
+    box-shadow: 0 13px 21px rgba(0,1,0,.19),0 21px 63px rgba(0,1,0,.31);
+	width: 700px;
+}
+#how_to_work_form h2 {
+	text-align: center;
+}
+#close_btn {
+    top: -11px;
+    right: -11px;
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    padding: 0;
+    border: 2px solid #ccd;
+    border-radius: 15px;
+    background-color: rgba(61, 61, 61, 0.81);
+    box-shadow: 0 0 12px #010;
+    text-align: center;
+    text-decoration: none;
+    font: 18px sans-serif;
+    font-weight: bold;
+    transition: all ease .9s;
+}
+#close_btn:before {
+    color: rgba(254, 254, 254, 0.89);
+    content: "X";
+    text-shadow: 0 1px 3px #010;
+    font-size: 14px;
+}
+#close_btn:hover {
+    background-color: rgba(253, 21, 0, 0.83);
+    transform: rotate(360deg);    
+}
+#cc_data_table {
+	margin-bottom: 5px;
+}
+.info {
+	border: 1px solid red !important;
+}
+.bubble {
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	z-index: 999;
+	background: #90EE90;
+	text-align: center;
+}
+@media print {
+	body * 
+	{
+		visibility: hidden;
+	}
+	body 
+	{
+		background: none;
+	}
+	#container *
+	{
+		visibility: visible;
+	}
+	#container {
+		top: 0;
+	}
+	.btn {
+		border: 1px black solid;
+	}
+}
+
